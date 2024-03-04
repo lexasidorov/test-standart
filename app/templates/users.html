@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title%}Users{% endblock %}
+
+{% block content %}
+<h1>Пользователи</h1>
+<table id="invoices" class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">ID</th>
+			<th scope="col">login</th>
+			<th scope="col">роль</th>			
+		</tr>
+	</thead>
+	<tbody>
+		{% for i in data %}
+	        <tr>
+	    		<td>{{ i.id }}</td>
+	        	<td>{{ i.login }}</td>
+	    		<td>
+		        	{% if i.role %}
+		        		Администратор
+		        	{% else %}
+		        		Пользователь
+      				{% endif %}
+		     	</td>
+	        </tr>
+      	{% endfor %}
+	</tbody>
+</table>
+
+
+{% endblock %}

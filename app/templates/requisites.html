@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title%}Requisites{% endblock %}
+
+{% block content %}
+<h1>Реквизиты</h1>
+<table id="requisites" class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">ID</th>
+			<th scope="col">ФИО</th>			
+			<th scope="col">Контакты</th>			
+			<th scope="col">Тип оплаты</th>
+			<th scope="col">Лимит</th>			
+		</tr>
+	</thead>
+	<tbody>
+		{% for i in data %}
+	        <tr>
+	    		<td>{{ i.id }}</td>
+	    		<td>{{ i.fio }}</td>
+	    		<td>{{ i.phone_number }}</td>
+	        	<td>
+	        		{% if is_credit %}
+        				{% if i.payment_type == 0 %}
+	        				Кредитная карта
+        				{% elif i.payment_type == 1 %}
+        					Кредитный счёт
+	        			{% else %}
+    	    				Иное
+      					{% endif %}
+      				{% else %}
+      					{% if i.payment_type == 0 %}
+	        				Банковская карта
+        				{% elif i.payment_type == 1 %}
+        					Банковский счёт
+	        			{% else %}
+    	    				Иное
+      					{% endif %}
+  					{% endif %}
+	        	</td>
+	    		<td>{{ i.limit }}</td>
+	        </tr>
+      	{% endfor %}
+	</tbody>
+</table>
+
+
+{% endblock %}
